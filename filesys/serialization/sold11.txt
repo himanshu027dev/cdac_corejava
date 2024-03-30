@@ -1,0 +1,344 @@
+package serialization;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+class customer implements Serializable{
+    int custid,age;
+    String custname, address;
+    public int getCustid() {
+        return custid;
+    }
+    public void setCustid(int custid) {
+        this.custid = custid;
+    }
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+    public String getCustname() {
+        return custname;
+    }
+    public void setCustname(String custname) {
+        this.custname = custname;
+    }
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public String toString(){
+        return  "Customer ID : "+custid+"\nName : "+custname+ "\nAge: "+age +"\nAddress:"+address;
+    }
+    
+
+}
+
+public class day11 {
+    public static void main(String[] args) throws Exception {
+        
+        customer c = new customer();
+        c.setCustid(23456);
+        c.setAge(28);
+        c.setCustname("John Doe");
+        c.setAddress("123 Main St.");
+        
+        FileOutputStream fos = new FileOutputStream("customer.txt");  //create object of fileoutputstream to write
+
+        ObjectOutputStream oos = new ObjectOutputStream(fos); 
+        oos.writeObject(c);
+
+         c = null;
+
+         FileInputStream fis = new FileInputStream("customer.txt");
+
+         ObjectInputStream ois =new ObjectInputStream(fis);
+         
+         customer nc = (customer)ois.readObject();
+         System.out.println(nc.toString());
+        
+    
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+package serialization;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+class person implements Serializable{
+    private int age;
+    private String name;
+
+    public void person(){
+        System.out.println( "Person: Default constructor" );
+    }
+    
+   
+    public int getAge() {
+        return age;
+    }
+
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public String toString(){
+        return  "Person [age=" + age + ", name= "+ name+"]";
+    }
+    
+
+}
+class student extends person{
+    private int rollno;
+
+    public int getRollno() {
+        return rollno;
+    }
+
+    public void setRollno(int rollno) {
+        this.rollno = rollno;
+    }
+    
+    public void student(String n,int a,int r){
+        super.setName(n);
+        super.setAge(a);
+        this.rollno=r;
+        
+    }
+
+    public  String toString(){
+        return "Student [rollno=" + rollno +", " +super.toString()+"]";
+    }
+}
+
+public class day11 {
+    public static void main(String[] args) throws Exception {
+        
+        student s = new student();
+        s.setAge(14);
+        s.setName("John");
+        s.setRollno(87654321);
+       
+        
+        FileOutputStream fos = new FileOutputStream("student.txt");  //create object of fileoutputstream to write
+
+        ObjectOutputStream oos = new ObjectOutputStream(fos); 
+        oos.writeObject(s);
+
+         s = null;
+
+         FileInputStream fis = new FileInputStream("student.txt");
+
+         ObjectInputStream ois =new ObjectInputStream(fis);
+         
+         student nc = (student)ois.readObject();
+         System.out.println(nc.toString());
+
+        
+    
+    }
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+package serialization;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+
+class student implements Serializable{
+    private int rollno,age;
+    private String name;
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getRollno() {
+        return rollno;
+    }
+
+    public void setRollno(int rollno) {
+        this.rollno = rollno;
+    }
+    
+    public void student(int r){
+        
+        this.rollno=r;
+        
+    }
+
+    public  String toString(){
+        return  "Student [ Roll No. = "+this.getRollno() + ", Name = "+this.getName()+", Age = "+this.getAge()+"]";
+    }
+}
+
+public class day11 {
+    public static void main(String[] args) throws Exception {
+        
+        student s1 = new student();
+        s1.setAge(14);
+        s1.setName("John");
+        s1.setRollno(87654321);
+        student s2 = new student();
+        s2.setAge(16);
+        s2.setName("Jane");
+        s2.setRollno(9090909);
+       
+        
+        FileOutputStream fos = new FileOutputStream("studentmore.txt");  //create object of fileoutputstream to write
+
+        ObjectOutputStream oos = new ObjectOutputStream(fos); 
+        oos.writeObject(s1);
+        oos.writeObject(s2);
+
+         s1 = null;
+         s2 = null;
+
+         student fs1 =null;
+         student fs2 = null;
+
+         FileInputStream fis = new FileInputStream("studentmore.txt");
+
+         ObjectInputStream ois =new ObjectInputStream(fis);
+         
+          fs1 = (student)ois.readObject();
+          fs2 = (student)ois.readObject();
+         System.out.println(fs1.toString());
+         System.out.println(fs2.toString());
+
+
+        
+    
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////
+package serialization;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+class Engine implements Serializable{
+    private int speed;
+    private String Type;
+    public int getSpeed() {
+        return speed;
+    }
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+    public String getType() {
+        return Type;
+    }
+    public void setType(String type) {
+        Type = type;
+    }
+    public String toString(){
+        return  "Engine[speed=" + speed + ",type=" + Type +"]";
+    }
+    
+}
+
+class car implements Serializable{
+    private String modelname;
+    private Engine engine;
+    public String getModelname() {
+        return modelname;
+    }
+    public void setModelname(String modelname) {
+        this.modelname = modelname;
+    }
+    public Engine getEngine() {
+        return engine;
+    }
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+    @Override
+    public String toString() {
+        return "Car [modelname=" + modelname + ", engine=" + engine + "]";
+
+    
+}
+}
+
+public class day11 {
+    public static void main(String[] args) throws Exception {
+        
+       car c =new car();
+       Engine e = new Engine();
+       e.setType("v8");
+       e.setSpeed(240);
+       c.setModelname("Audi A6");
+       c.setEngine(e);
+       
+        
+        FileOutputStream fos = new FileOutputStream("car&engine.txt");  //create object of fileoutputstream to write
+
+        ObjectOutputStream oos = new ObjectOutputStream(fos); 
+        oos.writeObject(c);
+        
+
+         
+
+        
+
+         FileInputStream fis = new FileInputStream("car&engine.txt");
+
+         ObjectInputStream ois =new ObjectInputStream(fis);
+         
+          c = (car)ois.readObject();
+          
+         System.out.println(c.toString());
+         
+
+
+        
+    
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////

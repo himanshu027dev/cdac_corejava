@@ -20,9 +20,9 @@ public class q7 {
         Iterator<Entry<Integer,String>> i=set.iterator();
         while (i.hasNext()) 
         {  
-            System.out.println(i.next());
-            // Entry<Integer,String> e = i.next();
-           // System.out.println("PRN: " + e.getKey()+" "+"name: "+e.getValue());
+            //System.out.println(i.next());
+            Entry<Integer,String> e = i.next();
+            System.out.println("PRN: " + e.getKey()+" "+"name: "+e.getValue());
         }
         
        

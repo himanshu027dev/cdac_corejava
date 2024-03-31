@@ -1,0 +1,148 @@
+class mythread extends Thread{
+    public void run(){
+        System.out.println("Thread is running");
+        for(char c = 'A'; c<='j';c++ ){
+            System.out.println(c);
+        }
+        
+    }
+}
+
+public class multithreading{
+    public static void main(String[] args) {
+        //creating object of the thread class
+        mythread t = new mythread();
+        //starting the thread
+        t.start();
+    }
+
+}
+///////////////////////////////////////////////////////////////////////////
+q2
+class mythread implements Runnable{
+    public void run(){
+        System.out.println("Thread is running");
+        for(char c = 'A'; c<='j';c++ ){
+            System.out.println(c);
+        }
+        
+    }
+}
+
+public class multithreading{
+    public static void main(String[] args) {
+         mythread m = new mythread();
+         
+        //creating object of the thread class
+        Thread t = new Thread(m);
+        //starting the thread
+        t.start();
+    }
+
+}
+/////////////////////////////////////////////////////////////////////
+q3
+
+class mythread implements Runnable{
+    synchronized public void run(){
+        System.out.println("Thread is running");
+        for(int c = 0; c<6;c++ ){
+            System.out.println("Exec"+" "+c+Thread.currentThread());
+            
+        }
+        
+    }
+}
+
+public class multithreading{
+    public static void main(String[] args) {
+         mythread m = new mythread();
+
+        //creating object of the thread class
+        Thread t1 = new Thread(m);
+        Thread t2 = new Thread(m);
+        Thread t3 = new Thread(m);
+        //starting the thread
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+
+}
+
+////////////////////////////////////////////////////////////////////////////
+q5
+class mythread implements Runnable{
+    synchronized public void run(){
+        if(Thread.currentThread().getName().equals("first")){
+        for(int c = 0; c<=50;c++ ){
+            System.out.println("Exec"+" "+c+Thread.currentThread());
+            }
+        }else{
+        for(int r = 50; r>=0;r-- ){
+            System.out.println("Exec"+" "+r+Thread.currentThread());
+            }
+        }
+    
+        
+    }
+}
+
+public class multithreading{
+    public static void main(String[] args) {
+         mythread m = new mythread();
+
+        //creating object of the thread class
+        Thread t1 = new Thread(m);
+        Thread t2 = new Thread(m);
+        t1.setName("first");
+        t2.setName("second");
+        
+        //starting the thread
+        t1.start();
+        t2.start();
+        
+    }
+
+}
+///////////////////////////////////////////////////////////////////////
+q4
+class mythread implements Runnable{
+    static void disp(){
+        synchronized(mythread.class)
+		{
+		for(int i=0;i<10;i++)
+		{
+
+System.out.println("static "+i+Thread.currentThread());
+		
+		}
+		}
+    }
+        
+
+
+    public void run(){
+        disp();
+    
+        
+    }
+}
+
+public class multithreading{
+    public static void main(String[] args) {
+         mythread m = new mythread();
+
+        //creating object of the thread class
+        Thread t1 = new Thread(m);
+        Thread t2 = new Thread(m);
+        t1.setName("first");
+        t2.setName("second");
+        
+        //starting the thread
+        t1.start();
+        t2.start();
+        
+    }
+
+}

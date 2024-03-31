@@ -1,0 +1,134 @@
+abstract class Shape {
+    abstract void draw();
+}
+
+class Triangle extends Shape {
+    void draw() {
+        System.out.println("Drawing a Triangle");
+    }
+}
+
+class Polygon extends Shape {
+    void draw() {
+        System.out.println("Drawing a Polygon");
+    }
+}
+
+class Circle extends Shape {
+    void draw() {
+        System.out.println("Drawing a Circle");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Shape[] shapes = new Shape[3];
+        shapes[0] = new Triangle();
+        shapes[1] = new Polygon();
+        shapes[2] = new Circle();
+
+        for (Shape shape : shapes) {
+            shape.draw();
+        }
+    }
+}
+***************************************************************
+interface A {
+    void disp1();
+}
+
+interface B extends A {
+    void disp2();
+}
+
+class C implements B {
+    public void disp1() {
+        System.out.println("Disp1 from C");
+    }
+
+    public void disp2() {
+        System.out.println("Disp2 from C");
+    }
+
+    public void dispFromC() {
+        System.out.println("Disp from C");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        C c = new C();
+        c.disp1();
+        c.disp2();
+        c.dispFromC();
+    }
+}
+*************************************************************************
+class Parent1 {
+    int data = 10;
+}
+
+interface Parent2 {
+    void method1();
+    void method2();
+}
+
+class Child extends Parent1 implements Parent2 {
+    public void method1() {
+        System.out.println("Method 1 from Child");
+    }
+
+    public void method2() {
+        System.out.println("Method 2 from Child");
+    }
+
+    public void displayData() {
+        System.out.println("Data from Parent1: " + data);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Child c = new Child();
+        c.method1();
+        c.method2();
+        c.displayData();
+    }
+}
+**********************************************************************
+public interface Game {
+    void play();
+}
+
+public class Cricket implements Game {
+    public void play() {
+        System.out.println("Playing Cricket");
+    }
+}
+
+public class FootBall implements Game {
+    public void play() {
+        System.out.println("Playing FootBall");
+    }
+}
+
+public class Tennis implements Game {
+    public void play() {
+        System.out.println("Playing Tennis");
+    }
+}
+
+public class Demo {
+    public static void main(String[] args) {
+        Game game = new Cricket();
+        perform(game);
+        game = new FootBall();
+        perform(game);
+        game = new Tennis();
+        perform(game);
+    }
+
+    public static void perform(Game game) {
+        game.play();
+    }
+}

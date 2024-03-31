@@ -18,7 +18,7 @@ public class q4 {
         i =  cowal.iterator();
         while (i.hasNext()) {
             System.out.println(i.next());
-        }  // Throws UnsupportedOperation
+        }  
     }
     
 }

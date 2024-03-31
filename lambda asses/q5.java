@@ -12,7 +12,7 @@ class Display {
     }
 }
 
-public class q1 {
+public class q5 {
     public static void main(String[] args) {
         // Create an instance of the Display class
         Display display = new Display();
